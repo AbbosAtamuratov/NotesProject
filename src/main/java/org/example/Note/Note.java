@@ -18,4 +18,5 @@ public class Note {
         this.text = text;
     }
 
+    public Note(String title, String text) { setTitle(title); setText(text); }
 }
