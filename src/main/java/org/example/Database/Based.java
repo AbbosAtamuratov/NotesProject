@@ -8,5 +8,7 @@ public interface Based {
     void edit(String id);
     void find(String id);
     void remove(String id);
-    public Display getDisplay();
+    Display getDisplay();
+    void showAll();
+    void menu();
 }

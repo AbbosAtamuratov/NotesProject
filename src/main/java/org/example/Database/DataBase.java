@@ -1,11 +1,10 @@
 package org.example.Database;
 
+import org.example.Controller.Command;
 import org.example.Note.*;
 import org.example.View.Display;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
 
 public class DataBase implements Based{
     private Display display;
@@ -48,6 +47,36 @@ public class DataBase implements Based{
 
     @Override
     public void remove(String id) {
+        notepad.remove(Integer.parseInt(id));
+        System.out.println("Запись успешно удалена...");
+    }
 
+    @Override
+    public void showAll() {
+        notepad.forEach((k,v) -> {
+            System.out.println(String.format("id: %d", k));
+            System.out.println(v);
+        });
+    }
+
+    @Override
+    public void menu() {
+        int i = 1;
+        for (Command c: Command.values()) {
+            if (c != Command.NONE) {
+                System.out.printf("%d. %s\n", i, c.toString());
+                i++;
+            }
+        }
+    }
+
+    public String validateId(String id){
+        try {
+            int num = Integer.parseInt(id);
+            if (notepad.containsKey(num))
+                return id;
+            else
+                return "Указанного ключа не найдено";
+        } catch (NumberFormatException e) { return "Некорректный ввод"; }
     }
 }

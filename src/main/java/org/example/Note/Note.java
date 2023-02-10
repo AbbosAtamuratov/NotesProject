@@ -19,4 +19,12 @@ public class Note {
     }
 
     public Note(String title, String text) { setTitle(title); setText(text); }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Заголовок: ").append(title).append("\n");
+        sb.append("Текст: ").append(text.replace(".", ".\n")).append("\n");
+        return sb.toString();
+    }
 }
