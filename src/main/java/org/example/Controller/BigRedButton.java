@@ -4,8 +4,8 @@ import org.example.Database.*;
 
 public class BigRedButton {
 
-    private Logger logger;
-    private DataBase dB;
+    private final Logger logger;
+    private final DataBase dB;
     private boolean isRunning;
 
     public BigRedButton(DataBase based) {
@@ -50,6 +50,8 @@ public class BigRedButton {
                         logger.addLog(com,correct);
                     }
                     else {
+                        dB.getDisplay().wtf();
+                        dB.getDisplay().flash(tmp);
                         logger.addLog(com, tmp);
                     }
                     break;
@@ -61,6 +63,8 @@ public class BigRedButton {
                         logger.addLog(com,correct);
                     }
                     else {
+                        dB.getDisplay().wtf();
+                        dB.getDisplay().flash(temp);
                         logger.addLog(com, temp);
                     }
                     break;
@@ -72,6 +76,8 @@ public class BigRedButton {
                         logger.addLog(com,correct);
                     }
                     else {
+                        dB.getDisplay().wtf();
+                        dB.getDisplay().flash(tempo);
                         logger.addLog(com, tempo);
                     }
                     break;

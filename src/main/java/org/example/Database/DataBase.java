@@ -1,9 +1,7 @@
 package org.example.Database;
 
-import org.example.Controller.Command;
 import org.example.Note.*;
 import org.example.View.Display;
-
 import java.util.HashMap;
 
 public class DataBase implements Based{
@@ -53,21 +51,12 @@ public class DataBase implements Based{
 
     @Override
     public void showAll() {
-        notepad.forEach((k,v) -> {
-            System.out.println(String.format("id: %d", k));
-            System.out.println(v);
-        });
+        display.showAll(notepad);
     }
 
     @Override
     public void menu() {
-        int i = 1;
-        for (Command c: Command.values()) {
-            if (c != Command.NONE) {
-                System.out.printf("%d. %s\n", i, c.toString());
-                i++;
-            }
-        }
+        display.littleHelper();
     }
 
     public String validateId(String id){
