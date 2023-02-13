@@ -2,18 +2,17 @@ package org.example.Database;
 
 import org.example.Note.*;
 import org.example.View.Display;
-import java.util.HashMap;
+
+import java.util.*;
 
 public class DataBase implements Based{
     private Display display;
-    private HashMap<Integer, Note> notepad = new HashMap<>();
-    private static int id = 1;
+    private List<Note> notepad = new ArrayList<>();
 
     public DataBase(Display display) { this.display = display; }
 
     public Display getDisplay() { return display; }
 
-    public static void setId(int id) { DataBase.id = id; }
 
     @Override
     public void save() {
@@ -25,8 +24,7 @@ public class DataBase implements Based{
         String head = display.promt("Введите заголовок: ");
         String text = display.promt("Введите текст: ");
 
-        notepad.put(id, new Note(head, text));
-        id++;
+        notepad.add(new Note(head, text));
         System.out.println("Запись успешно создана...");
     }
 
@@ -34,8 +32,9 @@ public class DataBase implements Based{
     public void edit(String id) {
         String userInputHead = display.promt("Введите новый заголовок: ");
         String userInputText = display.promt("Введите новый текст: ");
-        notepad.replace(Integer.parseInt(id), new Note(userInputHead, userInputText));
-        System.out.println("Запись успешно отредактирована...");
+        notepad.get(Integer.parseInt(id)).setTitle(userInputHead);
+        notepad.get(Integer.parseInt(id)).setTitle(userInputText);
+        System.out.printf("Запись %s успешно отредактирована...\n", id);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class DataBase implements Based{
     @Override
     public void remove(String id) {
         notepad.remove(Integer.parseInt(id));
-        System.out.println("Запись успешно удалена...");
+        System.out.printf("Запись %s успешно удалена...\n", id);
     }
 
     @Override
@@ -62,10 +61,13 @@ public class DataBase implements Based{
     public String validateId(String id){
         try {
             int num = Integer.parseInt(id);
-            if (notepad.containsKey(num))
+            List<Integer> ids = new ArrayList<>();
+            for (Note n : notepad)
+                ids.add(n.getId());
+            if (ids.contains(num))
                 return id;
             else
-                return "Указанного ключа не найдено";
+                return "Указанного id не найдено";
         } catch (NumberFormatException e) { return "Некорректный ввод"; }
     }
 }

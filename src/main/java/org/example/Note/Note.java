@@ -3,6 +3,7 @@ package org.example.Note;
 public class Note {
     private String title;
     private String text;
+    private static int id=1;
 
     public String getTitle() {
         return title;
@@ -18,11 +19,19 @@ public class Note {
         this.text = text;
     }
 
-    public Note(String title, String text) { setTitle(title); setText(text); }
+    public static int getId() {
+        return id;
+    }
+    public static void setId(int id) {
+        Note.id = id;
+    }
+
+    public Note(String title, String text) { setTitle(title); setText(text); setId(id); id++;}
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("id: ").append(getId()).append('\n');
         sb.append("Заголовок: ").append(title).append("\n");
         sb.append("Текст: ").append(text.replace(".", ".\n")).append("\n");
         return sb.toString();
