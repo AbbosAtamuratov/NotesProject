@@ -23,7 +23,7 @@ public class CentralController {
         dB.getDisplay().greet();
 
         int pathway = dB.getDisplay().pickFileManager();
-        FileManager fileManager=null;
+        FileManager fileManager = null;
         FileManagerFactory fileManagerFactory = new FileManagerFactory();
 
         switch (pathway) {
@@ -107,9 +107,11 @@ public class CentralController {
                     break;
                 case HELP:
                     dB.getDisplay().littleHelper();
+                    logger.addLog(com, correct);
                     break;
                 case SHOW:
                     dB.showAll();
+                    logger.addLog(com, correct);
                     break;
                 default:
                     dB.getDisplay().wtf();

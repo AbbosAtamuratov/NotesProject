@@ -43,7 +43,7 @@ public class XMLFileManager extends FileManager implements Managable{
         }
     }
     @XmlRootElement(name = "notes")
-    private class NoteListWrapper{
+    private static class NoteListWrapper{
         private List<Note> notes;
 
         @XmlElement(name = "note")

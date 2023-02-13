@@ -32,7 +32,7 @@ public class DataBase implements Based {
         if (notepad.isEmpty())
             id =1;
         else
-            id = getMaxId();
+            id = getMaxId()+1;
         notepad.add(new Note(head, text, id));
         System.out.println("Запись успешно создана...");
     }

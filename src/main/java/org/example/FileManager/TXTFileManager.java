@@ -26,6 +26,7 @@ public class TXTFileManager extends FileManager implements Managable {
                     throw new RuntimeException(e);
                 }
             }
+            fw.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
