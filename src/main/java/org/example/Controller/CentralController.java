@@ -1,8 +1,7 @@
 package org.example.Controller;
 
 import org.example.Database.*;
-import org.example.FileManager.FileManager;
-import org.example.FileManager.FileManagerFactory;
+import org.example.FileManager.*;
 
 public class CentralController {
 
