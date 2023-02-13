@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <notes>
     <note>
-        <title>dsfd,sf</title>
-        <text>cman</text>
+        <title>типичный Ржевский</title>
+        <text>Извините, мадам, я не расслышал вопроса, но мой ответ: да, я согласен перепихнуться!</text>
         <id>1</id>
     </note>
     <note>
-        <title>dsad</title>
-        <text>kobo</text>
+        <title>про госуслуги</title>
+        <text>- А вы знаете, куда ещё можно войти с паролем от Госуслуг?- Поручик Ржевский, уймитесь уже наконец!</text>
         <id>2</id>
-    </note>
-    <note>
-        <title>chicky</title>
-        <text>kiawa</text>
-        <id>3</id>
     </note>
 </notes>

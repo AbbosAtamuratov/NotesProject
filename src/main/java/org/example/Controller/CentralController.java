@@ -17,6 +17,8 @@ public class CentralController {
 
     public void setRunning(boolean running) { isRunning = running; }
 
+    public Logger getLogger() { return logger; }
+
     public void run(){
 
         String correct = "программа сработала корректно";

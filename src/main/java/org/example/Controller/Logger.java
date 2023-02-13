@@ -8,7 +8,7 @@ import java.util.Date;
 public class Logger {
     private static Logger logs;
     private static Date date = new Date();
-    private static SimpleDateFormat sDate = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+    private static SimpleDateFormat sDate = new SimpleDateFormat("HH-mm dd-MM-yyyy");
     private static final String sessionName = String.format("session %s", sDate.format(date.getTime()));
     private static String logData = String.format("Logs for %s...\n", sessionName);
 
@@ -36,8 +36,9 @@ public class Logger {
                 fw.append('\n');
             }
             fw.flush();
+            System.out.println("File written successfully.");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Error writing file: " + e.getMessage());
         }
     }
 }
