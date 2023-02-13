@@ -9,11 +9,8 @@ import java.util.List;
 public class XMLFileManager implements Managable{
     private String fileName;
 
-    public void setFileName(String fileName) {
+    public XMLFileManager(String fileName) {
         this.fileName = fileName;
-    }
-    public String getFileName() {
-        return fileName;
     }
 
     public void save(List<Note> notes){
