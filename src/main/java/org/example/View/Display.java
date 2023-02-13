@@ -38,9 +38,9 @@ public class Display {
     public int pickFileManager(){
         System.out.println("В каком формате будет сохранять наши записки?");
         System.out.println("" +
-                "1. txt" +
-                "2. xml" +
-                "3. json");
+                "1. txt\n" +
+                "2. xml\n" +
+                "3. json\n");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine().toLowerCase();
         if (input.contains("txt") || input.contains("1"))

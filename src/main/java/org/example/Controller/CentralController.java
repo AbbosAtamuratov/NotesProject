@@ -4,13 +4,13 @@ import org.example.Database.*;
 import org.example.FileManager.FileManager;
 import org.example.FileManager.FileManagerFactory;
 
-public class BigRedButton {
+public class CentralController {
 
     private final Logger logger;
     private final DataBase dB;
     private boolean isRunning;
 
-    public BigRedButton(DataBase based) {
+    public CentralController(DataBase based) {
         this.dB = based;
         this.logger = Logger.getLogger();
         this.isRunning = true;
@@ -105,6 +105,12 @@ public class BigRedButton {
                         dB.getDisplay().flash(tempo);
                         logger.addLog(com, tempo);
                     }
+                    break;
+                case HELP:
+                    dB.getDisplay().littleHelper();
+                    break;
+                case SHOW:
+                    dB.showAll();
                     break;
                 default:
                     dB.getDisplay().wtf();

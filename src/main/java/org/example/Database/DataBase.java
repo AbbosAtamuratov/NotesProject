@@ -28,7 +28,11 @@ public class DataBase implements Based {
     public void create() {
         String head = display.promt("Введите заголовок: ");
         String text = display.promt("Введите текст: ");
-        int id = getMaxId();
+        int id = 0;
+        if (notepad.isEmpty())
+            id =1;
+        else
+            id = getMaxId();
         notepad.add(new Note(head, text, id));
         System.out.println("Запись успешно создана...");
     }

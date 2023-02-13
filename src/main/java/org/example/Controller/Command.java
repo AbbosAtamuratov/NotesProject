@@ -2,7 +2,7 @@ package org.example.Controller;
 
 public enum Command {
     NONE,
-    MENU,
+    HELP,
     CREATE,
     EDIT,
     REMOVE,
