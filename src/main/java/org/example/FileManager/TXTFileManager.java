@@ -6,16 +6,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TXTFileManager implements Managable {
-    private String filename;
+public class TXTFileManager extends FileManager implements Managable {
 
-    public TXTFileManager(String filename) {
-        this.filename = filename;
+    public TXTFileManager(String fileName) {
+        super(fileName);
     }
 
     public void save(List<Note> notes) {
         try {
-            FileWriter fw = new FileWriter(filename, false);
+            FileWriter fw = new FileWriter(getFileName(), false);
             for(Note n : notes){
                 StringBuilder sb = new StringBuilder();
                 sb.append("id: ").append(n.getId()).append(";");
@@ -36,7 +35,7 @@ public class TXTFileManager implements Managable {
         List<Note> loadedNotes = new ArrayList<Note>();
         List<String> allNotes = new ArrayList<String>();
         try {
-            FileReader fr = new FileReader(filename);
+            FileReader fr = new FileReader(getFileName());
             BufferedReader reader = new BufferedReader(fr);
 
             String line = reader.readLine();

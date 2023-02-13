@@ -8,7 +8,6 @@ public enum Command {
     REMOVE,
     FIND,
     SHOW,
-    SAVE,
     LOGS,
     EXIT
 }

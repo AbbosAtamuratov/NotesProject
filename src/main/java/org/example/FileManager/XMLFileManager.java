@@ -6,11 +6,10 @@ import javax.xml.bind.annotation.*;
 import java.io.File;
 import java.util.List;
 
-public class XMLFileManager implements Managable{
-    private String fileName;
+public class XMLFileManager extends FileManager implements Managable{
 
     public XMLFileManager(String fileName) {
-        this.fileName = fileName;
+        super(fileName);
     }
 
     public void save(List<Note> notes){
@@ -24,7 +23,7 @@ public class XMLFileManager implements Managable{
             NoteListWrapper wrapper = new NoteListWrapper();
             wrapper.setNotes(notes);
 
-            jaxbMarshaller.marshal(wrapper, new File(fileName));
+            jaxbMarshaller.marshal(wrapper, new File(getFileName()));
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +34,7 @@ public class XMLFileManager implements Managable{
             JAXBContext jaxbContext = JAXBContext.newInstance(NoteListWrapper.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            NoteListWrapper wrapper = (NoteListWrapper) jaxbUnmarshaller.unmarshal(new File(fileName));
+            NoteListWrapper wrapper = (NoteListWrapper) jaxbUnmarshaller.unmarshal(new File(getFileName()));
 
             return wrapper.getNotes();
         } catch (Exception e) {

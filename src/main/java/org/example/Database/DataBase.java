@@ -21,6 +21,10 @@ public class DataBase implements Based {
         this.notepad = notepad;
     }
 
+    public List<Note> getNotepad() {
+        return notepad;
+    }
+
     public void create() {
         String head = display.promt("Введите заголовок: ");
         String text = display.promt("Введите текст: ");

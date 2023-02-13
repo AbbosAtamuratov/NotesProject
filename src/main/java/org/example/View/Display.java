@@ -34,4 +34,21 @@ public class Display {
             }
         }
     }
+
+    public int pickFileManager(){
+        System.out.println("В каком формате будет сохранять наши записки?");
+        System.out.println("" +
+                "1. txt" +
+                "2. xml" +
+                "3. json");
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine().toLowerCase();
+        if (input.contains("txt") || input.contains("1"))
+            return 1;
+        else if (input.contains("xml") || input.contains("2"))
+            return 2;
+        else if (input.contains("json") || input.contains("3"))
+            return 3;
+        else throw new RuntimeException();
+    }
 }

@@ -1,6 +1,8 @@
 package org.example.Controller;
 
 import org.example.Database.*;
+import org.example.FileManager.FileManager;
+import org.example.FileManager.FileManagerFactory;
 
 public class BigRedButton {
 
@@ -20,6 +22,28 @@ public class BigRedButton {
 
         String correct = "программа сработала корректно";
         dB.getDisplay().greet();
+
+        int pathway = dB.getDisplay().pickFileManager();
+        FileManager fileManager=null;
+        FileManagerFactory fileManagerFactory = new FileManagerFactory();
+
+        switch (pathway) {
+            case 1:
+                fileManager = fileManagerFactory.getTXTfileManager();
+                break;
+            case 2:
+                fileManager = fileManagerFactory.getXMLfileManager();
+                break;
+            case 3:
+                fileManager = fileManagerFactory.getJSONfileManager();
+                break;
+            default:
+                logger.addLog("", "Выбран некорректный формат");
+                break;
+        }
+
+        dB.setNotepad(fileManager.load());
+
         Command command = Command.NONE;
         String com = new String();
         String userInput = new String();
@@ -31,6 +55,7 @@ public class BigRedButton {
                 case EXIT:
                     setRunning(false);
                     dB.getDisplay().okBye();
+                    fileManager.save(dB.getNotepad());
                     logger.addLog(com, correct);
                     logger.saveLogs();
                     break;
