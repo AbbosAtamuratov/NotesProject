@@ -1,9 +1,13 @@
 package org.example.Note;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "note")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Note {
     private String title;
     private String text;
-    private static int id=1;
+    private int id;
 
     public String getTitle() {
         return title;
@@ -19,21 +23,28 @@ public class Note {
         this.text = text;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
-    public static void setId(int id) {
-        Note.id = id;
+
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Note(String title, String text) { setTitle(title); setText(text); setId(id); id++;}
+    public Note(String title, String text, int id) {
+        this.title = title;
+        this.text = text;
+        this.id = id;
+    }
+
+    public Note() { }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("id: ").append(getId()).append('\n');
         sb.append("Заголовок: ").append(title).append("\n");
-        sb.append("Текст: ").append(text.replace(".", ".\n")).append("\n");
+        sb.append("Текст:\n").append(text.replaceAll("[.!?]", "$0\n")).append("\n");
         return sb.toString();
     }
 }

@@ -2,9 +2,9 @@ package org.example.FileManager;
 
 import org.example.Note.Note;
 
-import java.util.HashMap;
+import java.util.List;
 
 public interface Managable {
-    void save(HashMap<Integer, Note> notes);
-    HashMap<Integer, Note> load();
+    void save(List<Note> notes);
+    List<Note> load();
 }

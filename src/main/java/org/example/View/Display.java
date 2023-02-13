@@ -3,7 +3,6 @@ package org.example.View;
 import org.example.Controller.Command;
 import org.example.Note.Note;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +23,7 @@ public class Display {
 
     public void wtf() { System.out.println("Что-то явно пошло не так..."); }
 
-    public void showAll(List<Note> notes){ notes.forEach(n -> System.out.println(n)); }
+    public void showAll(List<Note> notes){ for(Note n : notes) System.out.println(n); }
 
     public void littleHelper(){
         int i = 1;

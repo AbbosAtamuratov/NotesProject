@@ -4,7 +4,6 @@ import org.example.Note.Note;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class TXTFileManager implements Managable {
@@ -14,30 +13,28 @@ public class TXTFileManager implements Managable {
         this.filename = filename;
     }
 
-    @Override
-    public void save(HashMap<Integer, Note> notes) {
+    public void save(List<Note> notes) {
         try {
             FileWriter fw = new FileWriter(filename, false);
-            notes.forEach((k, v) -> {
+            for(Note n : notes){
                 StringBuilder sb = new StringBuilder();
-                sb.append("id: ").append(k).append(";");
-                sb.append(" title: ").append(v.getTitle()).append(";");
-                sb.append(" text: ").append(v.getText()).append("\n");
+                sb.append("id: ").append(n.getId()).append(";");
+                sb.append(" title: ").append(n.getTitle()).append(";");
+                sb.append(" text: ").append(n.getText()).append("\n");
                 try {
                     fw.write(sb.toString());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            });
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    public HashMap<Integer, Note> load() {
-        HashMap<Integer, Note> loadedNotes = new HashMap<>();
-        List<String> allNotes = new ArrayList<>();
+    public List<Note> load() {
+        List<Note> loadedNotes = new ArrayList<Note>();
+        List<String> allNotes = new ArrayList<String>();
         try {
             FileReader fr = new FileReader(filename);
             BufferedReader reader = new BufferedReader(fr);
@@ -45,7 +42,7 @@ public class TXTFileManager implements Managable {
             String line = reader.readLine();
             if (line != null)
                 allNotes.add(line);
-            while (line != null){
+            while (line != null) {
                 line = reader.readLine();
                 if (line != null)
                     allNotes.add(line);
@@ -56,19 +53,19 @@ public class TXTFileManager implements Managable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        for(String sn : allNotes) loadedNotes.add(parseNote(sn));
         return loadedNotes;
     }
 
-    private String[] slpitter(String stringNote){
-        String[] res = stringNote.split(";");
-        if (res.length > 3) {
-            for (int i = 3; i < res.length; i++) {
-                res[2] += String.format("; %s", res[i]);
-                res[i] = null;
-            }
+    private Note parseNote(String stringNote) {
 
-        }
-        return res;
+        String[] parts = stringNote.split(";", 3);
+
+        int id = Integer.parseInt(parts[0].substring(4).trim());
+        String title = parts[1].substring(7).trim();
+        String text = parts[2].substring(7).trim();
+
+        Note ldNote = new Note(title, text, id);
+        return ldNote;
     }
 }

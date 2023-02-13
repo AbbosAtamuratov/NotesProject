@@ -5,30 +5,41 @@ import org.example.View.Display;
 
 import java.util.*;
 
-public class DataBase implements Based{
+public class DataBase implements Based {
     private Display display;
-    private List<Note> notepad = new ArrayList<>();
+    private List<Note> notepad = new ArrayList<Note>();
 
-    public DataBase(Display display) { this.display = display; }
-
-    public Display getDisplay() { return display; }
-
-
-    @Override
-    public void save() {
-
+    public DataBase(Display display) {
+        this.display = display;
     }
 
-    @Override
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setNotepad(List<Note> notepad) {
+        this.notepad = notepad;
+    }
+
     public void create() {
         String head = display.promt("Введите заголовок: ");
         String text = display.promt("Введите текст: ");
-
-        notepad.add(new Note(head, text));
+        int id = getMaxId();
+        notepad.add(new Note(head, text, id));
         System.out.println("Запись успешно создана...");
     }
 
-    @Override
+    private int getMaxId() {
+        int maxId = 1;
+        for (Note note : notepad) {
+            int id = note.getId();
+            if (id > maxId) {
+                maxId = id;
+            }
+        }
+        return maxId;
+    }
+
     public void edit(String id) {
         String userInputHead = display.promt("Введите новый заголовок: ");
         String userInputText = display.promt("Введите новый текст: ");
@@ -37,37 +48,35 @@ public class DataBase implements Based{
         System.out.printf("Запись %s успешно отредактирована...\n", id);
     }
 
-    @Override
     public void find(String id) {
         display.flash(notepad.get(Integer.parseInt(id)).toString());
     }
 
-    @Override
     public void remove(String id) {
         notepad.remove(Integer.parseInt(id));
         System.out.printf("Запись %s успешно удалена...\n", id);
     }
 
-    @Override
     public void showAll() {
         display.showAll(notepad);
     }
 
-    @Override
     public void menu() {
         display.littleHelper();
     }
 
-    public String validateId(String id){
+    public String validateId(String id) {
         try {
             int num = Integer.parseInt(id);
-            List<Integer> ids = new ArrayList<>();
+            List<Integer> ids = new ArrayList<Integer>();
             for (Note n : notepad)
                 ids.add(n.getId());
             if (ids.contains(num))
                 return id;
             else
                 return "Указанного id не найдено";
-        } catch (NumberFormatException e) { return "Некорректный ввод"; }
+        } catch (NumberFormatException e) {
+            return "Некорректный ввод";
+        }
     }
 }
